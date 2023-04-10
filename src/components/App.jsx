@@ -12,7 +12,6 @@ const users = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 const LOCAL_KEY = 'contacts';
-git;
 
 export const App = () => {
   const [contacts, setContacts] = useState(() => {
