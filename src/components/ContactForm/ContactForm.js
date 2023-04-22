@@ -3,12 +3,12 @@ import { nanoid } from 'nanoid';
 
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContactAction } from 'redux/contacts/contacts.actions';
+import { addContactAction } from 'redux/slice';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(state => state.contacts.data);
   const dispatch = useDispatch();
 
   const nameId = nanoid();
