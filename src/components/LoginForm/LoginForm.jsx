@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authLogIn } from 'redux/auth/authThunk';
-import { TextField, Button, FormHelperText } from '@mui/material';
+import { TextField, Button, FormHelperText, Typography } from '@mui/material';
 import { FormBox } from './LoginForm.styled';
 import { selectAuthError } from 'redux/auth/authSelectors';
 import { resetErrorAction } from 'redux/auth/authSlice';
@@ -47,7 +47,9 @@ export const LoginForm = () => {
   return (
     <div>
       <FormBox onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <Typography variant="h5" component="h3" sx={{ fontWeight: '700' }}>
+          Login
+        </Typography>
         <TextField
           type="text"
           label="email"

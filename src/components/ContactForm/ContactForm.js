@@ -6,7 +6,7 @@ import {
   selectContacts,
 } from 'redux/constats/contactsSelectors';
 import { addContact } from 'redux/constats/contactsThunk';
-import { TextField, Button, FormHelperText } from '@mui/material';
+import { TextField, Button, FormHelperText, Typography } from '@mui/material';
 import { FormStyle } from './ContactForm.styled';
 
 export const ContactForm = () => {
@@ -53,7 +53,9 @@ export const ContactForm = () => {
 
   return (
     <FormStyle onSubmit={handleSubmit}>
-      <h3>Phonebook</h3>
+      <Typography variant="h5" component="h3" sx={{ fontWeight: '700' }}>
+        Phonebook
+      </Typography>
       <TextField
         type="text"
         name="name"

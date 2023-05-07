@@ -1,9 +1,15 @@
+import { Typography } from '@mui/material';
+
 const HomePage = () => {
   return (
     <div>
-      <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
+      <Typography
+        sx={{ textAlign: 'center', marginTop: '20px', fontWeight: '500' }}
+        component="h2"
+        variant="h2"
+      >
         This is Home Page
-      </h1>
+      </Typography>
     </div>
   );
 };

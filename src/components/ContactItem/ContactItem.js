@@ -8,7 +8,7 @@ export const ContactItem = ({ name, id, phone }) => {
   const dispatch = useDispatch();
 
   return (
-    <ListItem style={{ borderBottom: '1px solid grey' }}>
+    <ListItem sx={{ borderBottom: '1px solid grey' }}>
       <ListItemText
         inset
         primary={`name: ${name}`}

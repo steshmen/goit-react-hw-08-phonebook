@@ -1,4 +1,4 @@
-import { Button, FormHelperText, TextField } from '@mui/material';
+import { Button, FormHelperText, TextField, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { authRegister } from 'redux/auth/authThunk';
@@ -53,7 +53,9 @@ export const RegisterForm = () => {
   return (
     <div>
       <FormBox onSubmit={handleSubmit}>
-        <h2>Registration</h2>
+        <Typography variant="h5" component="h3" sx={{ fontWeight: '700' }}>
+          Registration
+        </Typography>
         <TextField
           type="text"
           label="Name"

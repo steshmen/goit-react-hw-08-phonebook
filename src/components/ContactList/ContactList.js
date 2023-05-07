@@ -7,7 +7,7 @@ import {
   selectContactIsLoading,
 } from 'redux/constats/contactsSelectors';
 import { selectFilteredContacts } from 'redux/filter/filterSelectors';
-import { List } from '@mui/material';
+import { List, Typography } from '@mui/material';
 import { Loader } from 'components/Loader/Loader';
 
 export const ContactList = () => {
@@ -24,12 +24,12 @@ export const ContactList = () => {
     <>
       {contactsIsLoading && <Loader />}
       {error && (
-        <p style={{ color: 'red', margin: 10 }}>The server is not responding</p>
+        <Typography component="p" sx={{ color: 'red', m: '10' }}>
+          The server is not responding
+        </Typography>
       )}
       {filteredContacts.length > 0 && (
-        <List
-          style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }}
-        >
+        <List sx={{ width: '400px', ml: 'auto', mr: 'auto' }}>
           {filteredContacts.map(({ name, id, number }) => (
             <ContactItem key={id} name={name} id={id} phone={number} />
           ))}

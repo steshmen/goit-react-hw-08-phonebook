@@ -25,7 +25,7 @@ export const App = () => {
       <Layout>
         <Suspense fallback="">
           <Routes>
-            <Route path="" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="" element={<PublicRoute />}>
               <Route path="/register" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />

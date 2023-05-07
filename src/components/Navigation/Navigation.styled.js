@@ -6,6 +6,7 @@ export const NavLinkStyle = styled(NavLink)`
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 600;
+  font-family: Roboto;
   color: white;
   margin-right: 20px;
   position: relative;
