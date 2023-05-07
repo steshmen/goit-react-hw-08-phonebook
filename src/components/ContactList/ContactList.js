@@ -1,17 +1,19 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from 'redux/contactsThunk';
+import { fetchContacts } from 'redux/constats/contactsThunk';
 import {
-  selectError,
-  selectFilteredContacts,
-  selectIsLoading,
-} from 'redux/selectors';
+  selectContactError,
+  selectContactIsLoading,
+} from 'redux/constats/contactsSelectors';
+import { selectFilteredContacts } from 'redux/filter/filterSelectors';
+import { List } from '@mui/material';
+import { Loader } from 'components/Loader/Loader';
 
 export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const contactsIsLoading = useSelector(selectContactIsLoading);
+  const error = useSelector(selectContactError);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,16 +22,18 @@ export const ContactList = () => {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {contactsIsLoading && <Loader />}
       {error && (
         <p style={{ color: 'red', margin: 10 }}>The server is not responding</p>
       )}
       {filteredContacts.length > 0 && (
-        <ul>
-          {filteredContacts.map(({ name, id, phone }) => (
-            <ContactItem key={id} name={name} id={id} phone={phone} />
+        <List
+          style={{ width: '400px', marginLeft: 'auto', marginRight: 'auto' }}
+        >
+          {filteredContacts.map(({ name, id, number }) => (
+            <ContactItem key={id} name={name} id={id} phone={number} />
           ))}
-        </ul>
+        </List>
       )}
     </>
   );

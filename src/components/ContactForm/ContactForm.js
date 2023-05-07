@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { nanoid } from 'nanoid';
-
-import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsThunk';
+
+import {
+  selectContactError,
+  selectContacts,
+} from 'redux/constats/contactsSelectors';
+import { addContact } from 'redux/constats/contactsThunk';
+import { TextField, Button, FormHelperText } from '@mui/material';
+import { FormStyle } from './ContactForm.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-
-  const nameId = nanoid();
-  const numberId = nanoid();
+  const error = useSelector(selectContactError);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -24,8 +25,7 @@ export const ContactForm = () => {
       return;
     }
 
-    const id = nanoid();
-    dispatch(addContact({ id, name, number }));
+    dispatch(addContact({ name, number }));
     reset();
   };
 
@@ -52,40 +52,35 @@ export const ContactForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit}>
-      <label className={css.name_titel} htmlFor={nameId}>
-        Name
-      </label>
-      <input
+    <FormStyle onSubmit={handleSubmit}>
+      <h3>Phonebook</h3>
+      <TextField
         type="text"
-        className={css.name_input}
         name="name"
+        label="Name"
         pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
         required
-        id={nameId}
         value={name}
         onChange={handleChange}
+        size="small"
       />
-
-      <label className={css.name_titel} htmlFor={numberId}>
-        Number
-      </label>
-      <input
-        className={css.name_input}
+      <TextField
+        label="number"
         type="tel"
         name="number"
         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
         required
-        id={numberId}
         value={number}
         onChange={handleChange}
+        size="small"
       />
 
-      <button className={css.form_btn} type="submit">
-        Add contact
-      </button>
-    </form>
+      {error && <FormHelperText error>Contacts not found</FormHelperText>}
+      <div>
+        <Button type="submit" children="Add contact" variant="outlined" />
+      </div>
+    </FormStyle>
   );
 };

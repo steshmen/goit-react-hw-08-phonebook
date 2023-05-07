@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import css from './Filter.module.css';
-import { getFilterAction } from 'redux/filterSlice';
-import { selectFilter } from 'redux/selectors';
+import { getFilterAction } from 'redux/filter/filterSlice';
+import { selectFilter } from 'redux/filter/filterSelectors';
+import { TextField } from '@mui/material';
+import { FilterBox } from './Filter.styled';
 
 export const Filter = () => {
   const filter = useSelector(selectFilter);
@@ -12,14 +13,15 @@ export const Filter = () => {
     dispatch(getFilterAction(e.target.value));
   };
   return (
-    <>
-      <p className={css.titel}>Find contacts by name</p>
-      <input
-        className={css.input}
+    <FilterBox>
+      <TextField
         value={filter}
         name="filter"
         onChange={handleChangeFilter}
+        size="small"
+        label="Find contacts by name"
+        style={{ width: '100%' }}
       />
-    </>
+    </FilterBox>
   );
 };
